@@ -1,15 +1,13 @@
 import random
+import unicodedata
 
 def select_word() -> str:
-   
     with open('mots.txt', 'r') as file:
         words = file.readlines()
-    
     word = random.choice(words).strip()
     return word
 
 def display_word(word: str, guessed_letters: list[str]) -> str:
-   
     displayed_word = ''
     for letter in word:
         if letter in guessed_letters:
@@ -20,7 +18,7 @@ def display_word(word: str, guessed_letters: list[str]) -> str:
     return displayed_word
 
 def check_guess(word: str, guessed_letters: list[str], guess: str) -> bool:
-    
+    guess = unicodedata.normalize('NFD', guess).encode('ascii', 'ignore').decode('utf-8')  # Normaliser les accents
     if guess in guessed_letters:
         print("Vous avez déjà proposé cette lettre.")
         return False
