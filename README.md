@@ -27,4 +27,7 @@ Le Jeu de Devinettes est un petit jeu de mots où le joueur doit deviner un mot 
 
 ## Installation
 
-1. Clonez ce dépôt GitHub :
+1. Clonez ce dépôt GitHub : git@github.com:aznavouur/jeu-de-devinettes.git
+2. excuter le script dans votre cmd/terminal
+
+
