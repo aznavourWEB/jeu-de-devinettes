@@ -1,15 +1,15 @@
 import random
 
-def select_word():
-   
+def select_word() -> str:
+    # Lecture des mots à deviner depuis un fichier texte
     with open('mots.txt', 'r') as file:
         words = file.readlines()
-  
+    # Choix aléatoire d'un mot
     word = random.choice(words).strip()
     return word
 
-def display_word(word, guessed_letters):
-  
+def display_word(word: str, guessed_letters: list[str]) -> str:
+    # Affichage du mot à deviner avec les lettres devinées
     displayed_word = ''
     for letter in word:
         if letter in guessed_letters:
@@ -19,8 +19,8 @@ def display_word(word, guessed_letters):
     print(displayed_word)
     return displayed_word
 
-def check_guess(word, guessed_letters, guess):
-   
+def check_guess(word: str, guessed_letters: list[str], guess: str) -> bool:
+    # Vérification de la proposition du joueur
     if guess in guessed_letters:
         print("Vous avez déjà proposé cette lettre.")
         return False
@@ -32,18 +32,18 @@ def check_guess(word, guessed_letters, guess):
         print("Mauvaise devinette.")
         return False
 
-def play_game():
+def play_game() -> None:
     difficulty = input("Choisissez le niveau de difficulté (1: Débutant, 2: Intermédiaire) : ")
 
     if difficulty == '1':
-        attempts = int(input("Entrez le nombre d'essais : "))  
+        attempts = int(input("Entrez le nombre d'essais : "))  # Mode débutant
         word = select_word()
         print("Le mot à deviner comporte", len(word), "lettres.")
     else:
-        attempts = 6 
+        attempts = 6  # Mode intermédiaire
         word = select_word()
-        print("Vous avez 6 essais pour deviner le mot.")
-
+        print("Vous disposez de 6 essais.")
+    
     guessed_letters = []
 
     print("Bienvenue dans le jeu de devinettes !")
@@ -72,4 +72,8 @@ def play_game():
     else:
         print("Merci d'avoir joué !")
 
-play_game()
+if __name__ == "__main__":
+    try:
+        play_game()
+    except Exception as e:
+        print("Une erreur est survenue :", str(e))
